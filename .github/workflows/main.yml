@@ -28,7 +28,9 @@ jobs:
         run: npm run build
 
       - name: Deploy to Cloudflare
-        uses: cloudflare/wrangler-action
+        uses: |
+          npm install -g @cloudflare/wrangler
+          wrangler publish --env production
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           script: wrangler publish
