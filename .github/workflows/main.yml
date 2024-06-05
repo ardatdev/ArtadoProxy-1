@@ -1,0 +1,22 @@
+name: Deploy to Cloudflare
+
+on:
+  push:
+    branches:
+      - main  # Replace with your branch name
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Add steps to build your application or perform any necessary setup
+
+      - name: Deploy to Cloudflare
+        uses: cloudflare/wrangler-action@v2
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          script: wrangler publish
